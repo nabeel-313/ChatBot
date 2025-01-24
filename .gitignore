@@ -19,6 +19,10 @@ lib64/
 parts/
 sdist/
 var/
+env/
+chat/
+logs/
+.env
 wheels/
 share/python-wheels/
 *.egg-info/

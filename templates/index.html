@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="chat-wrapper">
+        <div class="chat-header">
+            <h2>ChatGPT-like Assistant</h2>
+        </div>
+        <div id="chat-box" class="chat-box">
+            <!-- Messages will dynamically populate here -->
+        </div>
+        <div class="chat-input-area">
+            <input
+                type="text"
+                id="user-input"
+                placeholder="Type your message here..."
+                autofocus
+            />
+            <button id="send-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M3.4 20.4L20.4 12 3.4 3.6l1.8 7.2 6.2 1.2-6.2 1.2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <script src="/static/js/scripts.js"></script>
+</body>
+</html>
