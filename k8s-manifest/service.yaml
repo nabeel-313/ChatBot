@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: chatbot-namespace
+  name: chatbot-service
+  labels:
+    app: chatbot
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+  selector:
+    app: chatbot
+  type: ClusterIP
