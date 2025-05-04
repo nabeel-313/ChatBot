@@ -8,7 +8,7 @@ https://github.com/nabeel-313/ChatBot.git
 ## create venv and activate
 ```
 conda create -p chatbot python==3.12 -y
-conda activate ./charbot
+conda activate ./chat
 ```
 
 ## Install Requiments

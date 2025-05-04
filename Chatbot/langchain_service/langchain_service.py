@@ -1,15 +1,28 @@
 from Chatbot.config import Config
-from langchain_google_genai import ChatGoogleGenerativeAI
 from Chatbot.exception import ChatException
 from Chatbot.logger import logging
-
+from Chatbot.utils.main_utils import load_google_LLM, prompt_template, callback_call
+from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_core.runnables import RunnableConfig
+from tools.tools import *
 import sys
 from dotenv import load_dotenv, find_dotenv
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationSummaryBufferMemory
-f
+
 load_dotenv(find_dotenv(), override=True)
 
+#list of tools
+tools = [google_search_tool,weather_info_tool,convert_c_to_f,live_cricket_score]
+
+def create_tool_agent():
+    agent = create_tool_calling_agent(
+        llm = load_google_LLM(),
+        tools = tools,
+        prompt = prompt_template()
+    )
+    return agent
+    
 def generate_response(user_message):
     """
 Processes the user input and returns the LLM response.
@@ -27,19 +40,23 @@ Processes the user input and returns the LLM response.
     try:
         logging.info(f"Answering the User message {user_message}")
         load_dotenv(find_dotenv(), override=True)
-        llm = ChatGoogleGenerativeAI(
-            model=Config.MODEL_NAME,
-            temperature=Config.TEMP
-        )
+        llm = load_google_LLM()
+        prompt = prompt_template()
         memory = ConversationSummaryBufferMemory(
             llm = llm,
             max_token_limit=Config.MAX_TOKEN
         )
-        conversation = ConversationChain(
-            llm = llm,
-            memory = memory
+        agent_executor = AgentExecutor(
+                            agent=create_tool_agent(),
+                            tools=tools,
+                            memory=memory
         )
-        response = conversation.run(input=user_message)
+        config = RunnableConfig(callbacks=callback_call())
+        response = agent_executor.invoke(
+                            {"input": user_message },
+                             config=config
+                            )
+        
         #print(response)
         return response
     except Exception as e:
