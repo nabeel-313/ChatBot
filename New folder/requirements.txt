@@ -1,0 +1,8 @@
+flask
+langchain
+google-generativeai
+langchain-google-genai
+from_root
+python-dotenv
+langchain-community
+-e .

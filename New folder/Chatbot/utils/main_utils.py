@@ -2,8 +2,6 @@ from Chatbot.config import Config
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from langchain.prompts import PromptTemplate
-from langchain.schema import HumanMessage, AIMessage
 
 def callback_call():
     stream_handler = StreamingStdOutCallbackHandler()
@@ -23,19 +21,11 @@ def load_google_LLM():
         )
     return llm
 
-def serialize_messages(chat_history):
-    """
-    Convert LangChain chat messages to a list of plain dicts for JSON response.
-    """
-    serialized = []
-    for msg in chat_history:
-        if isinstance(msg, HumanMessage):
-            role = "user"
-        elif isinstance(msg, AIMessage):
-            role = "assistant"
-        else:
-            role = "system"
-        serialized.append({"role": role, "content": msg.content})
-    return serialized
-
+def prompt_template():
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", "You are a helpful assistant. Use tools if needed."),
+        MessagesPlaceholder(variable_name="chat_history"),
+        ("human", "{input}")
+    ])
+    return prompt
 

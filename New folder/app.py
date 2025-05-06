@@ -27,18 +27,10 @@ def get_data():
     data = request.get_json()
     text=data.get('data')
     user_input = text
-    print(user_input)
+    # print(user_input)
     out = generate_response(user_input)
-    print("---"*100)
     print(out)
-    print("---"*100)
-    # If output is a dict and includes non-serializable messages, fix it
-    if isinstance(out, dict) and "output" in out:
-        response_message = out["output"]
-    else:
-        response_message = str(out)  # Fallback to string
-    return jsonify({"response": True, "message": response_message})
-    #return jsonify({"response":True,"message":out})
+    return jsonify({"response":True,"message":out})
 
 if __name__ == '__main__':
     app.run(debug=True)
