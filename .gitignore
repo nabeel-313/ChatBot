@@ -20,6 +20,8 @@ parts/
 sdist/
 var/
 env/
+New folder
+*.zip
 chat/
 logs/
 .env
