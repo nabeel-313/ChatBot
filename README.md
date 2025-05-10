@@ -24,7 +24,7 @@ python app.py
 # Output Images
 ![Output image1](https://raw.githubusercontent.com/nabeel-313/ChatBot/main/images/output-1.png)
 ![Output image2](https://raw.githubusercontent.com/nabeel-313/ChatBot/main/images/output-2.png)
-![Output image3](https://raw.githubusercontent.com/nabeel-313/ChatBot/main/images/output-3.png)
+![Output image3](https://raw.githubusercontent.com/nabeel-313/ChatBot/main/images/Output-3.png)
 
 
 
