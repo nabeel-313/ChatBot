@@ -2,7 +2,7 @@ from Chatbot.config import Config
 from Chatbot.exception import ChatException
 from Chatbot.logger import logging
 from Chatbot.utils.main_utils import load_google_LLM, callback_call, serialize_messages
-from langchain.agents import AgentExecutor, create_react_agent
+from langchain.agents import AgentExecutor, create_chat_agent
 from langchain_core.runnables import RunnableConfig
 from Chatbot.tools.tools import *
 import sys
@@ -15,18 +15,18 @@ load_dotenv(find_dotenv(), override=True)
 
 #list of tools
 tools = [google_search_tool,create_weather_tool(),convert_c_to_f,live_cricket_score]
-# prompt = ChatPromptTemplate.from_messages([
-#     ("system", "You are a helpful assistant."),
-#     MessagesPlaceholder(variable_name="chat_history"),
-#     ("human", "{input}"),
-#     MessagesPlaceholder(variable_name="agent_scratchpad"),
-# ])
-prompt = hub.pull("hwchase17/react")
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant."),
+    MessagesPlaceholder(variable_name="chat_history"),
+    ("human", "{input}"),
+    MessagesPlaceholder(variable_name="agent_scratchpad"),
+])
+#prompt = hub.pull("hwchase17/react")
 def create_tool_agent():
-    agent = create_react_agent(
+    agent = create_chat_agent(
         llm = load_google_LLM(),
         tools = tools,
-        prompt=prompt,
+        prompt=prompt, ## Should be chat-style with scratchpad etc.
         #verbose = True
     )
     return agent

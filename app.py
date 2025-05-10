@@ -4,6 +4,9 @@ from Chatbot.langchain_service.langchain_service import generate_response
 
 app = Flask(__name__)
 
+@app.route('/healthz', methods=['GET'])
+def health_check():
+    return jsonify(status="ok"), 200
 @app.route("/")
 def index():
     """

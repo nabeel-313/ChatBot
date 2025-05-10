@@ -22,8 +22,7 @@ python app.py
 ```
 
 # Output Images
-![Output image](https://github.com/nabeel-313/ChatBot/blob/main/images/output-1.png)
-![Output image2]([https://github.com/nabeel-313/ChatBot/blob/main/images/output-2.png])
-![Output image2]([https://github.com/nabeel-313/ChatBot/blob/main/images/output-3.png])
+![Output image](https://github.com/nabeel-313/ChatBot/blob/main/images/output-4.png)
+![Output image2]([https://github.com/nabeel-313/ChatBot/blob/main/images/output-5.png])
 
 
